@@ -1,13 +1,13 @@
 let result=document.getElementById('result')
 let flag =1;
-function display(val){
+function display(number){
     if(flag==0)
     {
         result.value='';
         
         // result.value="";
     }
-    result.value+=val;
+    result.value+=number;
     flag=1;
 
 }
@@ -15,31 +15,31 @@ function display(val){
 // {
 
 // }
-function calculate(s) {
+function calculate(paranthesis) {
     let ans = 0;
     let sn = 1;
-    let n = s.length;
+    let len = paranthesis.length;
     let st = [];
 
-    for (let i = 0; i < n; i++) {
-        if (s[i] >= '0' && s[i] <= '9') {
+    for (let i = 0; i < len; i++) {
+        if (paranthesis[i] >= '0' && paranthesis[i] <= '9') {
             let num = 0;
-            while (i < n && s[i] >= '0' && s[i] <= '9') {
+            while (i < len && paranthesis[i] >= '0' && paranthesis[i] <= '9') {
                 num = num * 10 + parseInt(s[i]);
                 i++;
             }
             i--;
             ans += num * sn;
             sn = 1;
-        } else if (s[i] === '(') {
+        } else if (paranthesis[i] === '(') {
             st.push(ans);
             st.push(sn);
             ans = 0;
             sn = 1;
-        } else if (s[i] === ')') {
+        } else if (paranthesis[i] === ')') {
             ans *= st.pop();
             ans += st.pop();
-        } else if (s[i] === '-') {
+        } else if (paranthesis[i] === '-') {
             sn *= -1;
         }
     }
